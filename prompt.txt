@@ -1,0 +1,47 @@
+create full experiment report for graduate stucent about chatbot. 
+initial/base paper: 
+    i will explain about initial/base pape a bit. the paper is uploaded with name "good-a_chatbot_using_lstm_based_multi_layer_embedding_for_elderly_care.pdf". please verify my explanation before continuing. 
+    explanation: this paper using glove embedding to convert text to numeric format and use tagging as well. it does not mention what tagging it uses but for now i use semantic tagging. the diagram of the process is uploaded in this chat. 
+    ipynb file: chatbot_campus_lstm_original.ipynb
+    result: 
+    - training accuracy: 0.9768
+    - testing accuracy: 0.7531
+    - rouge score: 
+        - ROUGE-1: 0.0608
+        - ROUGE-2: 0.0394
+        - ROUGE-L: 0.0605
+    - bert score:
+        - Precision: 0.8428
+        - Recall:    0.7969
+        - F1 Score:  0.8185
+
+experiment 1 for improvement: 
+    file: chatbot_campus_lstm.ipynb. please take a look at the ipynb file. 
+    explanation: intent base chatbot. i use bert embedding for semantic embedding and i use semantic tagging as well. 
+    result: 
+    - training accuracy: 1.0000
+    - testing accuracy: 0.6914
+    - rouge score: 
+        - ROUGE-1: 0.8145
+        - ROUGE-2: 0.7876
+        - ROUGE-L: 0.8117
+    - bert score:
+        - Precision: 0.9638
+        - Recall:    0.9644
+        - F1 Score:  0.9640
+
+experiment 2 for improvement: 
+    file: chatbot_campus_lstm_original.ipynb. please take a look at the ipynb file. 
+    explanation: for this one convert to question answer base instead of intent base. and the method using transformer.
+    result: 
+    - training accuracy: 0.3641
+    - rouge score: 
+        - ROUGE-1: 0.8303
+        - ROUGE-2: 0.7351
+        - ROUGE-L: 0.8270
+    - bert score:
+        - Precision: 0.8428
+        - Recall:    0.7969
+        - F1 Score:  0.8185
+
+
