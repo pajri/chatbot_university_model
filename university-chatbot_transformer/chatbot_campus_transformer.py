@@ -6,6 +6,7 @@ import numpy as np
 import spacy
 import re 
 import string
+import json
 
 # variable initialization
 TOKENIZER_PATH = 'chatbot_campus_transformer_tokenizer'
@@ -13,6 +14,12 @@ MODEL_PATH = 'chatbot_campus_transformer_model'
 MAX_LENGTH = 40
 
 print("loading resources...")
+
+print("-- loading config")
+replacements = None
+with open("../config.json", "r", encoding="utf-8") as config_file:
+    replacements = json.load(config_file)
+    
 print("-- loading tokenizer")
 tokenizer = tfds.deprecated.text.SubwordTextEncoder.load_from_file(TOKENIZER_PATH)
 START_TOKEN, END_TOKEN = [tokenizer.vocab_size], [tokenizer.vocab_size + 1]
@@ -204,4 +211,7 @@ if __name__ == "__main__":
         preprocessed_question = apply_ner_tags(preprocessed_question)
 
         response = predict(preprocessed_question)
+        for key, value in replacements.items():
+            response = response.replace('\\&undsc', '_')
+            response = response.replace(key, value)
         print(f"Bot: {response}")

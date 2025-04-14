@@ -9,11 +9,18 @@ import numpy as np
 import torch
 import pickle
 import spacy
+import json
 from transformers import BertTokenizer, BertModel
 from tensorflow.keras.models import load_model
 print("all libraries have been imported")
 
 print("loading resources...")
+
+print("-- loading config")
+replacements = None
+with open("../config.json", "r", encoding="utf-8") as config_file:
+    replacements = json.load(config_file)
+    
 print("-- loading model")
 model = load_model("chatbot_campus_lstm.h5")
 
@@ -96,6 +103,8 @@ def chat():
         for intent in data['intents']:
             if intent['tag'] == tag:
                 response = random.choice(intent['responses'])
+                for key, value in replacements.items():
+                    response = response.replace(key, value)
                 print("Bot:", response)
                 print("="*50)
                 break
